@@ -1,0 +1,202 @@
+units:
+  # Key spacing
+  kx: u
+  ky: u
+  # Padding
+  px: kx + 2
+  py: ky + 2
+  default_splay: -2.5
+  default_spread: U + 0.6
+
+points:
+  zones:
+    matrix:
+      anchor:
+        rotate: 0
+        shift: [0, 0]
+      columns:
+        pinky:
+          rows:
+            bottom.skip: true
+            home:
+            top:
+          key:
+            column_net: P1
+            splay: 0
+        ring:
+          key:
+            stagger: 8
+            column_net: P2
+            splay: 0
+            spread: default_spread - 0.2
+        middle:
+          key:
+            stagger: 10
+            column_net: P3
+            spread: default_spread
+            splay: default_splay
+        index:
+          key:
+            stagger: 7
+            column_net: P4
+            spread: default_spread
+            splay: default_splay
+        inner:
+          key:
+            stagger: -3
+            spread: default_spread
+            column_net: P5
+            splay: default_splay 
+        inner2:
+          key:
+            stagger: -3
+            spread: default_spread - 0.2
+            column_net: P9
+            splay: -2
+        inner3:
+          rows:
+            bottom.skip: true
+            home:
+            top:
+          key:
+            stagger: -9
+            column_net: P10
+            splay: -3
+            spread: u
+      rows:
+        bottom:
+          row_net: P6
+        home:
+          row_net: P7
+        top:
+          row_net: P8
+    
+    thumbs:
+      anchor:
+        ref: matrix_inner3_bottom
+        shift: [-1.6 kx, -0.657ky]
+      columns:
+        thumb1:
+          key:
+            column_net: P9
+        thumb2:
+          key:
+            stagger: -0.06ky
+            spread: 20
+            splay: -6
+            column_net: P10
+        thumb3:
+          key:
+            stagger: -0.06ky
+            spread: 20
+            splay: -6
+            column_net: P11
+      rows:
+        thumbrow:
+          row_net: P12
+
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [kx, ky]
+      
+  keys:
+    - what: rectangle
+      where: true
+      size: [kx - 0.1, ky-0.1]
+      
+  board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_pinky_home
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_pinky_top
+          shift: [-0.5px, 0.47py]
+        - ref: matrix_middle_top
+          shift: [0.28px, 0.85py]
+        - ref: matrix_index_top
+          shift: [0.4px, 0.50py]
+        - ref: matrix_inner2_top
+          shift: [0.5px, 0.6py]
+        - ref: matrix_inner3_top
+          shift: [0.5px, 1py]
+        - ref: thumbs_thumb3_thumbrow
+          shift: [-0.05px, 0.5py]
+        - ref: thumbs_thumb3_thumbrow
+          shift: [0.5px, 0.5py]
+        - ref: thumbs_thumb3_thumbrow
+          shift: [0.5px, -0.5py]
+        - ref: thumbs_thumb1_thumbrow
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_index_bottom
+          shift: [0.7px, -1.25py]
+        - ref: matrix_pinky_home
+          shift: [0.4px, -1py]
+        - ref: matrix_pinky_home
+          shift: [-0.5px, -0.5py]
+      fillet: 2
+  panel:
+    - name: board
+    - operation: subtract
+      name: keys
+
+pcbs:
+  keyboard:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      sockets:
+        what: switch_gateron_ks27_ks33
+        where: true
+        params:
+          include_keycap: true
+          hotswap: true
+          solder: false
+          include_led_outline: true
+          switch_3dmodel_filename: "${KIPRJMOD}/lib/ks33.step"
+          switch_3dmodel_xyz_rotation: [180, 0, 0]
+          hotswap_3dmodel_filename: "${KIPRJMOD}/lib/Gateron_ks33_hotswap_socket.step"
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+        adjust:
+          rotate: 180
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [1, 9]
+          rotate: -8.5
+      light:
+        what: diode_mp
+        where: true
+        params:
+          from: "{{name}}_R"
+          to: "GND"
+        adjust:
+          shift: [0.8, -5.2]
+          rotate: 0
+      resistor:
+        what: '0805'
+        where: true
+        params:
+          side: 'B'
+          reverse: false
+          components: 1
+          net_1_from: "{{name}}_R"
+          net_1_to: "DIODES"
+        adjust:
+          shift: [0.8, -5.2]
+          rotate: -90
+      via:
+        what: via
+        where: true
+        params:
+          net: "{{name}}_R"
+        adjust:
+          shift: [-1.5, -5.2]
