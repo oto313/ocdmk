@@ -101,6 +101,24 @@
 				)
 			)
 			(pin input line
+				(at 10.16 -7.62 90)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "11"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
 				(at -2.54 7.62 0)
 				(length 2.54)
 				(name "BAT"
