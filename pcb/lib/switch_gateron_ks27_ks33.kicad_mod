@@ -1,0 +1,170 @@
+(footprint "switch_gateron_ks27_ks33"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "S7"
+		(at 0 -8.8 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "71da512c-eea3-4507-9830-a8109c94129f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(property "Value" "SW_Push"
+		(at 0 0 0)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "74e19cdd-4d3a-448a-9fe5-2856cc12458e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(property "Footprint" "ceoloide:switch_gateron_ks27_ks33"
+		(at 0 0 0)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "4fa7119b-2cbe-4a3d-a394-902ed0f312fa")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "f3930a4e-b53a-4696-90da-d9bd4f27bc36")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(property "Description" "Push button switch, generic, two pins"
+		(at 0 0 0)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "09fe1fa9-3251-46df-8044-71f6f4411988")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(attr exclude_from_pos_files allow_soldermask_bridges)
+	(fp_poly
+		(pts
+			(xy -3.2 6.3) (xy 1.8 6.3) (xy 1.8 4.05) (xy -3.2 4.05)
+		)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill none)
+		(layer "Dwgs.User")
+		(uuid "39e61a00-d56a-4e09-b2e0-eb57a2648d4f")
+	)
+	(fp_poly
+		(pts
+			(xy 9 -8.999998) (xy -8.999998 -9) (xy -9 8.999998) (xy 8.999998 9)
+		)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill none)
+		(layer "Dwgs.User")
+		(uuid "41878f64-ebbc-48d8-a0b2-07a540f6abe6")
+	)
+	(pad "" smd roundrect
+		(at -8.05 -4.7)
+		(size 2.6 2.5)
+		(layers "F.Paste" "F.Mask")
+		(roundrect_rratio 0.1)
+		(uuid "e539b250-0728-498d-b7ac-a85b9de87d30")
+	)
+	(pad "" thru_hole circle
+		(at 0 0)
+		(size 5.6 5.6)
+		(drill 5.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "29125582-94cf-4c71-a5f7-7377c0e8685a")
+	)
+	(pad "" smd roundrect
+		(at 6.25 -5.75)
+		(size 2.6 2.5)
+		(layers "F.Paste" "F.Mask")
+		(roundrect_rratio 0.1)
+		(uuid "cc3e9851-56bb-48f6-9e81-0fdfdec17168")
+	)
+	(pad "1" smd roundrect
+		(at -7.35 -4.7)
+		(size 4 2.5)
+		(layers "F.Cu")
+		(roundrect_rratio 0.1)
+		(uuid "54cb1f4c-35bc-40d6-9f0b-cb792adfc288")
+	)
+	(pad "1" thru_hole circle
+		(at -4.4 -4.7)
+		(size 3.5 3.5)
+		(drill 3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "270506b8-b75d-4f70-b1c6-0d042b91b08a")
+	)
+	(pad "2" thru_hole circle
+		(at 2.6 -5.75)
+		(size 3.5 3.5)
+		(drill 3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "cc6d5261-3e4a-4a73-8b83-da7c77bc32c3")
+	)
+	(pad "2" smd roundrect
+		(at 5.55 -5.75)
+		(size 4 2.5)
+		(layers "F.Cu")
+		(roundrect_rratio 0.1)
+		(uuid "0398433d-fc7f-4a28-8ef4-959b955bc189")
+	)
+	(model "${KIPRJMOD}/lib/Gateron_ks33_hotswap_socket.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(model "${KIPRJMOD}/lib/ks33.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 180 0 0)
+		)
+	)
+)
