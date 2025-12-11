@@ -1,1 +1,1 @@
-ergogen ./ergogen
+ergogen ./ergogen --debug

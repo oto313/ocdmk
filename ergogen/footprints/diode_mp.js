@@ -11,6 +11,35 @@ module.exports = {
     to: undefined
   },
   body: p => {
+    function genPads(side) {
+      return `
+        (pad 1 smd custom (at -0.86 0 ${p.rot}) (size 0.1 0.1) (layers ${side}.Cu ${side}.Paste ${side}.Mask)
+          ${p.from.str}
+          (clearance 0.1) (zone_connect 0)
+          (options (clearance outline) (anchor rect))
+          (primitives
+            (gr_poly (pts
+              (xy -0.125 0.175) (xy -0.375 0.175) (xy -0.375 -0.175) (xy -0.125 -0.175) 
+              (xy -0.125 -0.7) (xy 0.375 -0.7) (xy 0.375 0.7) (xy -0.125 0.7))
+              (width 0.01))))
+
+        (pad 2 smd custom (at 0.6 0 ${p.rot}) (size 0.1 0.1) (layers ${side}.Cu ${side}.Paste ${side}.Mask)
+          ${p.to.str}
+          (clearance 0.1) (zone_connect 0)
+          (options (clearance outline) (anchor rect))
+          (primitives
+            (gr_poly (pts
+              (xy -0.635 -0.7) (xy -0.635 0.7) (xy 0.385 0.7) (xy 0.385 0.175) 
+              (xy 0.635 0.175) (xy 0.635 -0.175) (xy 0.385 -0.175) (xy 0.385 -0.7))
+              (width 0.01))))
+      `;
+    }
+
+    let pads = genPads(p.side);
+    if (p.reversible) {
+      pads += genPads(p.side === "F" ? "B" : "F");
+    }
+
     const standard = `
       (module LED_MP-2016-1100-50-90 (layer ${p.side}.Cu) (tedit 5B24D78E)
         ${p.at /* parametric position */}
@@ -59,26 +88,7 @@ module.exports = {
         (fp_line (start 1 0.8) (end -1 0.8) (layer ${p.side}.Fab) (width 0.127))
         (fp_circle (center 1.935 0) (end 2.035 0) (layer ${p.side}.Fab) (width 0.2))
 
-        ${'' /* pads */}
-        (pad 1 smd custom (at -0.86 0 ${p.rot}) (size 0.1 0.1) (layers ${p.side}.Cu ${p.side}.Paste ${p.side}.Mask)
-          ${p.from.str}
-          (clearance 0.1) (zone_connect 0)
-          (options (clearance outline) (anchor rect))
-          (primitives
-            (gr_poly (pts
-              (xy -0.125 0.175) (xy -0.375 0.175) (xy -0.375 -0.175) (xy -0.125 -0.175) 
-              (xy -0.125 -0.7) (xy 0.375 -0.7) (xy 0.375 0.7) (xy -0.125 0.7))
-              (width 0.01))))
-
-        (pad 2 smd custom (at 0.6 0 ${p.rot}) (size 0.1 0.1) (layers ${p.side}.Cu ${p.side}.Paste ${p.side}.Mask)
-          ${p.to.str}
-          (clearance 0.1) (zone_connect 0)
-          (options (clearance outline) (anchor rect))
-          (primitives
-            (gr_poly (pts
-              (xy -0.635 -0.7) (xy -0.635 0.7) (xy 0.385 0.7) (xy 0.385 0.175) 
-              (xy 0.635 0.175) (xy 0.635 -0.175) (xy 0.385 -0.175) (xy 0.385 -0.7))
-              (width 0.01))))
+        ${pads}
 
         ${'' /* 3D model (optional) */}
         ${p.show_3d ? `

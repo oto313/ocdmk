@@ -1,4 +1,4 @@
-(footprint "12402012E212A_AMP"
+(footprint "12402012E212A_AMP_reversible"
 	(version 20241229)
 	(generator "pcbnew")
 	(generator_version "9.0")
@@ -16,7 +16,7 @@
 			)
 		)
 	)
-	(property "Value" "12402012E212A_AMP"
+	(property "Value" "12402012E212A_AMP_reversible"
 		(at 0 -3.6703 0)
 		(unlocked yes)
 		(layer "F.Fab")
@@ -489,6 +489,12 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "e69b35dc-4a3a-454e-a2a4-0ceeee6e3ca1")
 	)
+	(pad "A1" smd rect
+		(at -3.2 -3.6703)
+		(size 0.6096 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "e17d5c6a-38ad-424f-95fe-bf9023e3aa02")
+	)
 	(pad "A4" smd rect
 		(at -2.4 -3.6703)
 		(size 0.6096 1.143)
@@ -496,10 +502,28 @@
 		(uuid "a46c37ed-0a68-49f6-837d-cf4a1c266796")
 	)
 	(pad "A4" smd rect
+		(at -2.4 -3.6703)
+		(size 0.6096 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "6c61fe2f-7f33-4951-8d2a-0325503d5e0a")
+	)
+	(pad "A4" smd rect
+		(at 2.4 -3.6703)
+		(size 0.6096 1.143)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "1586e5f6-634c-4af8-8188-3ead680facc8")
+	)
+	(pad "A4" smd rect
 		(at 2.4 -3.6703)
 		(size 0.6096 1.143)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "b6e6159c-0820-4042-8f27-08dde558d0e8")
+	)
+	(pad "A4" smd rect
+		(at 2.4 -3.6703)
+		(size 0.6096 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "0209dfd8-e7fa-4ae0-8a7f-993bdff7c6a4")
 	)
 	(pad "A5" smd rect
 		(at -1.25 -3.6703)
@@ -507,11 +531,23 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "a5e4b243-d276-4f41-863f-22c23cba3fb2")
 	)
+	(pad "A5" smd rect
+		(at -1.25 -3.6703)
+		(size 0.3048 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "76a79e1c-112c-4ac9-bc2f-6da480230c34")
+	)
 	(pad "A6" smd rect
 		(at -0.25 -3.6703)
 		(size 0.3048 1.143)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "0b077a48-9674-48b5-b4d8-61c01e00ca89")
+	)
+	(pad "A6" smd rect
+		(at -0.25 -3.6703)
+		(size 0.3048 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "819dd29a-607d-4bf3-890d-e360b5475e22")
 	)
 	(pad "A7" smd rect
 		(at 0.25 -3.6703)
@@ -519,11 +555,23 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "dac90656-fecb-4521-be49-769cbc73dcb5")
 	)
+	(pad "A7" smd rect
+		(at 0.25 -3.6703)
+		(size 0.3048 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "3d00227f-6b53-405b-aef6-f25e4fdec5f9")
+	)
 	(pad "A8" smd rect
 		(at 1.25 -3.6703)
 		(size 0.3048 1.143)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "07861631-5fcc-43a3-a856-d896a3278039")
+	)
+	(pad "A8" smd rect
+		(at 1.25 -3.6703)
+		(size 0.3048 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "d8e5adc4-585f-46ce-bb17-fcaab8942305")
 	)
 	(pad "B1" smd rect
 		(at 3.199999 -3.6703)
@@ -531,11 +579,29 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "88bed350-22b6-4d12-93ad-4abc9a597b0f")
 	)
+	(pad "B1" smd rect
+		(at 3.199999 -3.6703)
+		(size 0.6096 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "1f2cbd61-b800-4552-a2a8-abb534b95c4d")
+	)
 	(pad "B5" smd rect
 		(at 1.749999 -3.6703)
 		(size 0.3048 1.143)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "eedd6b9b-787a-4621-957e-e201ca6c13af")
+	)
+	(pad "B5" smd rect
+		(at 1.749999 -3.6703)
+		(size 0.3048 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "a85364d5-7437-4ae5-b02d-7a9d0fdb6fd5")
+	)
+	(pad "B6" smd rect
+		(at 0.75 -3.6703)
+		(size 0.3048 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "bf333e64-5fa2-4335-a33b-1e6d908a0969")
 	)
 	(pad "B6" smd rect
 		(at 0.750001 -3.6703)
@@ -548,6 +614,18 @@
 		(size 0.3048 1.143)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "c3210433-d15e-4edd-8268-24a3f2afef02")
+	)
+	(pad "B7" smd rect
+		(at -0.750001 -3.6703)
+		(size 0.3048 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "06340611-c0c6-441c-ab6e-1d23a4f64c16")
+	)
+	(pad "B8" smd rect
+		(at -1.75 -3.6703)
+		(size 0.3048 1.143)
+		(layers "B.Cu" "B.Mask" "B.Paste")
+		(uuid "f751c49a-8da6-43d6-9044-b444d75ca8e0")
 	)
 	(pad "B8" smd rect
 		(at -1.749999 -3.6703)

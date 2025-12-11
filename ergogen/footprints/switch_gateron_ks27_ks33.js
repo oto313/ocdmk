@@ -167,14 +167,16 @@ module.exports = {
     (fp_line (start 7 6) (end 7 7) (stroke (width 0.15) (type solid)) (layer "Dwgs.User"))
     `
 
-    const led_outline = `
+    const bottom_led_outline = `(fp_rect (start -3.2 -6.3) (end 1.8 -4.05) (stroke (width 0.15) (type solid)) (fill none) (layer "Dwgs.User"))`
+     const top_led_outline = `(fp_rect (start -1.8 -6.3) (end 3.2 -4.05) (stroke (width 0.15) (type solid)) (fill none) (layer "Dwgs.User"))`
+
+    let led_outline = `
     ${''/* led outline - front */}
-    ${p.side == 'B' ? `
-    (fp_rect (start -3.2 -6.3) (end 1.8 -4.05) (stroke (width 0.15) (type solid)) (fill none) (layer "Dwgs.User"))
-    `:`
-    (fp_rect (start -1.8 -6.3) (end 3.2 -4.05) (stroke (width 0.15) (type solid)) (fill none) (layer "Dwgs.User"))
-    `}
+    ${p.side == 'B' ? bottom_led_outline: top_led_outline}
     `
+    if(p.reversible){
+      led_outline += p.side == 'B' ? top_led_outline: bottom_led_outline
+    }
 
     const stem_outline = `
     ${''/* stem outline - front */}

@@ -14,6 +14,7 @@ points:
       anchor:
         rotate: 0
         shift: [0, 0]
+        resist: true
       columns:
         pinky:
           rows:
@@ -21,37 +22,37 @@ points:
             home:
             top:
           key:
-            column_net: P1
+            column_net: C1
             splay: 0
         ring:
           key:
             stagger: 8
-            column_net: P2
+            column_net: C2
             splay: 0
             spread: default_spread - 0.2
         middle:
           key:
             stagger: 10
-            column_net: P3
+            column_net: C3
             spread: default_spread
             splay: default_splay
         index:
           key:
             stagger: 7
-            column_net: P4
+            column_net: C4
             spread: default_spread
             splay: default_splay
         inner:
           key:
             stagger: -3
             spread: default_spread
-            column_net: P5
-            splay: default_splay 
+            column_net: C5
+            splay: default_splay
         inner2:
           key:
             stagger: -3
             spread: default_spread - 0.2
-            column_net: P9
+            column_net: C6
             splay: -2
         inner3:
           rows:
@@ -60,41 +61,61 @@ points:
             top:
           key:
             stagger: -9
-            column_net: P10
+            column_net: C7
             splay: -3
             spread: u
       rows:
         bottom:
-          row_net: P6
+          row_net: R1
         home:
-          row_net: P7
+          row_net: R2
         top:
-          row_net: P8
+          row_net: R3
     
-    thumbs:
+    matrix_thumbs:
       anchor:
         ref: matrix_inner3_bottom
         shift: [-1.6 kx, -0.657ky]
       columns:
         thumb1:
           key:
-            column_net: P9
+            column_net: C1
         thumb2:
           key:
             stagger: -0.06ky
             spread: 20
             splay: -6
-            column_net: P10
+            column_net: C2
         thumb3:
           key:
             stagger: -0.06ky
             spread: 20
             splay: -6
-            column_net: P11
+            column_net: C3
       rows:
         thumbrow:
-          row_net: P12
-
+          row_net: R4
+    usb_main:
+      anchor:
+        ref: matrix_inner3_top
+        shift: [0, 18]
+        rotate: 180
+      columns:
+        connector:
+      rows:
+        only:
+    usb_split:
+      anchor:
+        ref: matrix_thumbs_thumb3_thumbrow
+        shift: [-0.5, 32]
+        rotate: 111.5
+      columns:
+        connector:
+      rows:
+        only:
+  mirror:
+    ref: matrix_thumbs_thumb3_thumbrow
+    distance: 70
 outlines:
   raw:
     - what: rectangle
@@ -122,13 +143,11 @@ outlines:
           shift: [0.5px, 0.6py]
         - ref: matrix_inner3_top
           shift: [0.5px, 1py]
-        - ref: thumbs_thumb3_thumbrow
-          shift: [-0.05px, 0.5py]
-        - ref: thumbs_thumb3_thumbrow
+        - ref: matrix_thumbs_thumb3_thumbrow
           shift: [0.5px, 0.5py]
-        - ref: thumbs_thumb3_thumbrow
+        - ref: matrix_thumbs_thumb3_thumbrow
           shift: [0.5px, -0.5py]
-        - ref: thumbs_thumb1_thumbrow
+        - ref: matrix_thumbs_thumb1_thumbrow
           shift: [-0.5px, -0.5py]
         - ref: matrix_index_bottom
           shift: [0.7px, -1.25py]
@@ -137,66 +156,179 @@ outlines:
         - ref: matrix_pinky_home
           shift: [-0.5px, -0.5py]
       fillet: 2
+  board_mirror:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: mirror_matrix_pinky_home
+          shift: [-0.5px, 0.5py]
+        - ref: mirror_matrix_pinky_top
+          shift: [-0.5px, 0.47py]
+        - ref: mirror_matrix_middle_top
+          shift: [0.28px, 0.85py]
+        - ref: mirror_matrix_index_top
+          shift: [0.4px, 0.50py]
+        - ref: mirror_matrix_inner2_top
+          shift: [0.5px, 0.6py]
+        - ref: mirror_matrix_inner3_top
+          shift: [0.5px, 1py]
+        - ref: mirror_matrix_thumbs_thumb3_thumbrow
+          shift: [0.5px, 0.5py]
+        - ref: mirror_matrix_thumbs_thumb3_thumbrow
+          shift: [0.5px, -0.5py]
+        - ref: mirror_matrix_thumbs_thumb1_thumbrow
+          shift: [-0.5px, -0.5py]
+        - ref: mirror_matrix_index_bottom
+          shift: [0.7px, -1.25py]
+        - ref: mirror_matrix_pinky_home
+          shift: [0.4px, -1py]
+        - ref: mirror_matrix_pinky_home
+          shift: [-0.5px, -0.5py]
+      fillet: 2
   panel:
     - name: board
-    - operation: subtract
-      name: keys
-
+    - operation: add
+      name: board_mirror
 pcbs:
-  keyboard:
+  left_ocdmk:
     outlines:
       main:
-        outline: board
+        outline: board  # Use only the left outline
     footprints:
       sockets:
         what: switch_gateron_ks27_ks33
-        where: true
+        where:
+          - /^matrix.*/
         params:
           include_keycap: true
           hotswap: true
           solder: false
+          reversible: true
           include_led_outline: true
-          switch_3dmodel_filename: "${KIPRJMOD}/lib/ks33.step"
+          switch_3dmodel_filename: "${KIPRJMOD}/../lib/ks33.step"
           switch_3dmodel_xyz_rotation: [180, 0, 0]
-          hotswap_3dmodel_filename: "${KIPRJMOD}/lib/Gateron_ks33_hotswap_socket.step"
+          hotswap_3dmodel_filename: "${KIPRJMOD}/../lib/Gateron_ks33_hotswap_socket.step"
           from: "{{column_net}}"
           to: "{{colrow}}"
         adjust:
           rotate: 180
       diode:
-        what: diode
-        where: true
+        what: diode_tht_sod123
+        where:
+          - /^matrix.*/
         params:
+          reversible: true
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
           shift: [1, 9]
-          rotate: -8.5
-      light:
-        what: diode_mp
-        where: true
-        params:
-          from: "{{name}}_R"
-          to: "GND"
-        adjust:
-          shift: [0.8, -5.2]
           rotate: 0
-      resistor:
-        what: '0805'
-        where: true
+          resist: true
+      light_top:
+        what: diode_mp
+        where:
+          - /^matrix.*/
         params:
-          side: 'B'
-          reverse: false
-          components: 1
-          net_1_from: "{{name}}_R"
-          net_1_to: "DIODES"
+          designator: "LEDT"
+          side: "F"
+          from: "{{name}}_R"
+          to: "{{name}}"
         adjust:
           shift: [0.8, -5.2]
-          rotate: -90
-      via:
-        what: via
-        where: true
+          resist: true
+      light_bottom:
+        what: diode_mp
+        where:
+          - /^matrix.*/
         params:
-          net: "{{name}}_R"
+          designator: "LEDB"
+          side: "B"
+          from: "{{name}}_R"
+          to: "{{name}}"
         adjust:
-          shift: [-1.5, -5.2]
+          shift: [-0.6, -5.2]
+          resist: true
+      usb_main:
+        what: usb
+        where: /^usb_main.*/
+        params:
+          reversible: true
+      usb_split:
+        what: usb
+        where: /^usb_split.*/
+        params:
+          reversible: true
+          GND: "{{gnd}}"
+          VBUS: "{{vbus}}"
+          CC1: "{{zone.name}}_CC1"
+          CC2: "{{zone.name}}_CC2"
+          DP1: "{{dp}}"
+          DN1: "{{dm}}"
+          DP2: "{{dp}}"
+          DN2: "{{dm}}"
+          SBU1: "{{zone.name}}_SBU1"
+          SBU2: "{{zone.name}}_SBU2"
+
+  # right_ocdmk:
+  #   outlines:
+  #     main:
+  #       outline: board_mirror  # Use only the right outline
+  #   footprints:
+  #     sockets:
+  #       what: switch_gateron_ks27_ks33
+  #       where:
+  #         - /^mirror_matrix.*/
+  #       params:
+  #         include_keycap: true
+  #         hotswap: true
+  #         solder: false
+  #         reversible: true
+  #         include_led_outline: true
+  #         switch_3dmodel_filename: "${KIPRJMOD}/../lib/ks33.step"
+  #         switch_3dmodel_xyz_rotation: [180, 0, 0]
+  #         hotswap_3dmodel_filename: "${KIPRJMOD}/../lib/Gateron_ks33_hotswap_socket.step"
+  #         from: "{{column_net}}"
+  #         to: "{{colrow}}"
+  #       adjust:
+  #         rotate: 180
+  #     diode:
+  #       what: diode_tht_sod123
+  #       where:
+  #         - /^mirror_matrix.*/
+  #       params:
+  #         from: "{{colrow}}"
+  #         to: "{{row_net}}"
+  #       adjust:
+  #         shift: [1, 9]
+  #         rotate: 0
+  #         resist: true
+  #     light_right:
+  #       what: diode_mp
+  #       where:
+  #         - /^mirror_matrix.*/
+  #       params:
+  #         from: "{{name}}_R"
+  #         to: "{{name}}"
+  #       adjust:
+  #         shift: [0.8, -5.2]
+  #         resist: true
+  #     usb_main:
+  #       what: usb
+  #       where: /mirror_usb_main/
+  #       params:
+  #         side: "B"
+  #     usb_split:
+  #       what: usb
+  #       where: /mirror_usb_split/
+  #       params:
+  #         side: "B"
+  #         GND: "{{gnd}}"
+  #         VBUS: "{{vbus}}"
+  #         CC1: "{{zone.name}}_CC1"
+  #         CC2: "{{zone.name}}_CC2"
+  #         DP1: "{{dp}}"
+  #         DN1: "{{dm}}"
+  #         DP2: "{{dp}}"
+  #         DN2: "{{dm}}"
+  #         SBU1: "{{zone.name}}_SBU1"
+  #         SBU2: "{{zone.name}}_SBU2"
