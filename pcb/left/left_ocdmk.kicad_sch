@@ -6044,6 +6044,16 @@
 		)
 		(uuid "0bf0e496-2a18-4150-bd1a-3dd742142cf1")
 	)
+	(label "UART_RX"
+		(at 283.21 148.59 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0c9e642f-9b40-42bc-890e-ab2128c840d0")
+	)
 	(label "C4"
 		(at 108 35 0)
 		(effects
@@ -6313,6 +6323,16 @@
 			(justify left bottom)
 		)
 		(uuid "a7b4a44f-c5d8-4544-a61d-e24e51fbcf29")
+	)
+	(label "UART_TX"
+		(at 298.45 148.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "aa581f80-6167-4513-a30b-dfdc5ddf5cfa")
 	)
 	(label "D-"
 		(at 295.91 69.85 90)
@@ -10173,6 +10193,83 @@
 		)
 	)
 	(symbol
+		(lib_id "ocdmk:NUP2114")
+		(at 285.75 143.51 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7bd97469-04f8-4845-928f-13b958579888")
+		(property "Reference" "U4"
+			(at 298.45 142.1698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 298.45 144.7098 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-553"
+			(at 285.75 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nup2114-d.pdf"
+			(at 285.75 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 285.75 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "25effd29-9c4e-4896-8663-ae4ab0f80985")
+		)
+		(pin "2"
+			(uuid "0fd7c037-07f3-49bc-968a-2cece8278549")
+		)
+		(pin "3"
+			(uuid "222cf8ed-e852-4e36-969f-bf987b3260ab")
+		)
+		(pin "5"
+			(uuid "e2a8f8d4-8267-4991-b3ae-81c056285055")
+		)
+		(pin "1"
+			(uuid "decf92e6-b62b-45ff-9992-aa047edd8dff")
+		)
+		(instances
+			(project "left_ocdmk"
+				(path "/3ee89390-8d7f-42da-be7f-564d286e2536"
+					(reference "U4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:LED")
 		(at 137.16 274.32 180)
 		(unit 1)
@@ -11295,6 +11392,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:VBUS")
+		(at 290.83 140.97 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "984e9057-09a4-455b-a4f4-f3551c1685de")
+		(property "Reference" "#PWR019"
+			(at 290.83 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VBUS"
+			(at 290.83 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 290.83 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 290.83 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 290.83 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9c345922-6946-4067-920a-0af79d8bea80")
+		)
+		(instances
+			(project "left_ocdmk"
+				(path "/3ee89390-8d7f-42da-be7f-564d286e2536"
+					(reference "#PWR019")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:LED")
 		(at 120.65 274.32 180)
 		(unit 1)
@@ -12165,6 +12328,72 @@
 			(project "left_ocdmk"
 				(path "/3ee89390-8d7f-42da-be7f-564d286e2536"
 					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 293.37 156.21 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "acee8157-efe5-46e7-b001-26c0ab37f3cf")
+		(property "Reference" "#PWR020"
+			(at 293.37 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 293.37 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 293.37 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 293.37 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 293.37 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "186b87ae-07dd-4e30-8256-24d593c623e4")
+		)
+		(instances
+			(project "left_ocdmk"
+				(path "/3ee89390-8d7f-42da-be7f-564d286e2536"
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
